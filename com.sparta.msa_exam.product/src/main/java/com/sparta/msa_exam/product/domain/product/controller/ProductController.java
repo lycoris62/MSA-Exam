@@ -5,6 +5,8 @@ import com.sparta.msa_exam.product.domain.product.dto.request.GetProductReq;
 import com.sparta.msa_exam.product.domain.product.dto.response.AddProductRes;
 import com.sparta.msa_exam.product.domain.product.dto.response.GetProductRes;
 import com.sparta.msa_exam.product.domain.product.service.ProductService;
+import com.sparta.msa_exam.product.global.common.GlobalConstant;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -19,8 +21,6 @@ import java.util.List;
 @RequestMapping("/products")
 public class ProductController {
 
-    private static final String CUSTOM_SERVER_PORT_HEADER = "Server-Port";
-    
     private final ProductService productService;
 
     @Value("${server.port}")
@@ -32,7 +32,7 @@ public class ProductController {
         List<GetProductRes> productList = productService.getProductList(request);
 
         return ResponseEntity.ok()
-                .header(CUSTOM_SERVER_PORT_HEADER, port)
+                .header(GlobalConstant.CUSTOM_SERVER_PORT_HEADER, port)
                 .body(productList);
     }
 
@@ -42,7 +42,7 @@ public class ProductController {
         AddProductRes response = productService.addProduct(request);
 
         return ResponseEntity.ok()
-                .header(CUSTOM_SERVER_PORT_HEADER, port)
+                .header(GlobalConstant.CUSTOM_SERVER_PORT_HEADER, port)
                 .body(response);
     }
 }
