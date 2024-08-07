@@ -19,7 +19,6 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ProductService {
 
-    private final ProductMapper mapper;
     private final ProductRepository productRepository;
 
     @Transactional(readOnly = true)
@@ -27,20 +26,16 @@ public class ProductService {
 
         return productRepository.findAll()
                 .stream()
-                .map(mapper::toGetProductRes)
+                .map(ProductMapper.INSTANCE::toGetProductRes)
                 .toList();
     }
 
     @Transactional
     public AddProductRes addProduct(AddProductReq request) {
 
-        Product product = Product.builder()
-                .name(request.name())
-                .supplyPrice(request.supplyPrice())
-                .build();
-
+        Product product = Product.from(request);
         Product savedProduct = productRepository.save(product);
 
-        return mapper.toAddProductRes(savedProduct);
+        return ProductMapper.INSTANCE.toAddProductRes(savedProduct);
     }
 }
