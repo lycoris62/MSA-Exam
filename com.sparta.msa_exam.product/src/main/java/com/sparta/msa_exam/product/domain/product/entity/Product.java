@@ -1,4 +1,4 @@
-package com.sparta.msa_exam.product.domain.product;
+package com.sparta.msa_exam.product.domain.product.entity;
 
 import com.sparta.msa_exam.product.domain.model.BaseEntity;
 import jakarta.persistence.*;
