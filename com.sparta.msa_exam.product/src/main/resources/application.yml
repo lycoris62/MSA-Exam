@@ -6,6 +6,15 @@ spring:
     url: jdbc:h2:mem:db
     username: sa
     password:
+  jpa:
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        show_sql: true # sql 로깅
+        #        generate_statistics: true # 쿼리수행 통계
+        format_sql: true # SQL 문 정렬하여 출력
+        highlight_sql: true # SQL 문 색 부여
 
 server:
   port: 19093
