@@ -14,6 +14,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -39,9 +40,9 @@ public class ProductController {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "요청 성공")
     })
-    public ResponseEntity<List<GetProductsRes>> getProductList(GetProductsReq request) {
+    public ResponseEntity<List<GetProductsRes>> getProductList(GetProductsReq request, Pageable pageable) {
 
-        List<GetProductsRes> productList = productService.getProductList(request);
+        List<GetProductsRes> productList = productService.getProductList(request, pageable);
 
         return ResponseEntity.ok()
                 .header(GlobalConstant.CUSTOM_SERVER_PORT_HEADER, port)
