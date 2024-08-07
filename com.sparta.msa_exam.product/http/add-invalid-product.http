@@ -1,0 +1,29 @@
+POST http://localhost:19093/products
+Content-Type: application/json
+
+{
+  "name": "",
+  "supplyPrice": 3000
+}
+
+###
+
+POST http://localhost:19093/products
+Content-Type: application/json
+
+{
+  "name": "ccc"
+}
+
+###
+
+
+POST http://localhost:19093/products
+Content-Type: application/json
+
+{
+  "name": "ccc",
+  "supplyPrice": -100
+}
+
+###
