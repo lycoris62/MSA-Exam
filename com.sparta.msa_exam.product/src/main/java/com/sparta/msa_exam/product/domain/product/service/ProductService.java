@@ -1,7 +1,7 @@
 package com.sparta.msa_exam.product.domain.product.service;
 
 import com.sparta.msa_exam.product.domain.product.dto.request.AddProductReq;
-import com.sparta.msa_exam.product.domain.product.dto.request.GetProductReq;
+import com.sparta.msa_exam.product.domain.product.dto.request.GetProductsReq;
 import com.sparta.msa_exam.product.domain.product.dto.response.AddProductRes;
 import com.sparta.msa_exam.product.domain.product.dto.response.GetProductRes;
 import com.sparta.msa_exam.product.domain.product.entity.Product;
@@ -22,7 +22,7 @@ public class ProductService {
     private final ProductRepository productRepository;
 
     @Transactional(readOnly = true)
-    public List<GetProductRes> getProductList(GetProductReq request) {
+    public List<GetProductRes> getProductList(GetProductsReq request) {
 
         return productRepository.findAll()
                 .stream()

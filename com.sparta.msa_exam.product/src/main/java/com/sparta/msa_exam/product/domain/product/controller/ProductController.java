@@ -1,7 +1,7 @@
 package com.sparta.msa_exam.product.domain.product.controller;
 
 import com.sparta.msa_exam.product.domain.product.dto.request.AddProductReq;
-import com.sparta.msa_exam.product.domain.product.dto.request.GetProductReq;
+import com.sparta.msa_exam.product.domain.product.dto.request.GetProductsReq;
 import com.sparta.msa_exam.product.domain.product.dto.response.AddProductRes;
 import com.sparta.msa_exam.product.domain.product.dto.response.GetProductRes;
 import com.sparta.msa_exam.product.domain.product.service.ProductService;
@@ -36,7 +36,7 @@ public class ProductController {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "요청 성공")
     })
-    public ResponseEntity<List<GetProductRes>> getProductList(GetProductReq request) {
+    public ResponseEntity<List<GetProductRes>> getProductList(GetProductsReq request) {
 
         List<GetProductRes> productList = productService.getProductList(request);
 

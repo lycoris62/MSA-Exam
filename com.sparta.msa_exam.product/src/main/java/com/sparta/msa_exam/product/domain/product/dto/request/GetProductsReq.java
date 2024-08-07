@@ -9,5 +9,5 @@ import io.swagger.v3.oas.annotations.media.Schema;
  */
 @JsonIgnoreProperties // 필드가 없을 시 직렬화 에러가 나기 때문에 추가 필요
 @Schema(title = "상품 목록 조회 DTO")
-public record GetProductReq() {
+public record GetProductsReq() {
 }
