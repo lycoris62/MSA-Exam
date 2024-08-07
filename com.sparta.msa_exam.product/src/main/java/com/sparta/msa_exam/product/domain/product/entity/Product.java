@@ -1,9 +1,9 @@
 package com.sparta.msa_exam.product.domain.product.entity;
 
 import com.sparta.msa_exam.product.domain.model.BaseEntity;
+import com.sparta.msa_exam.product.domain.product.dto.request.AddProductReq;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -25,11 +25,15 @@ public class Product extends BaseEntity {
     private Integer supplyPrice;
 
     /**
-     * 생성 규칙은 빌더패턴으로 통일하고, 이외의 방식으로는 생성하지 못하게 제한
+     * 정적 팩토리 메서드로 생성
      */
-    @Builder
-    private Product(String name, Integer supplyPrice) {
-        this.name = name;
-        this.supplyPrice = supplyPrice;
+    public static Product from(AddProductReq request) {
+
+        Product product = new Product();
+
+        product.name = request.name();
+        product.supplyPrice = request.supplyPrice();
+
+        return product;
     }
 }
