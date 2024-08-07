@@ -3,7 +3,7 @@ package com.sparta.msa_exam.product.domain.product.controller;
 import com.sparta.msa_exam.product.domain.product.dto.request.AddProductReq;
 import com.sparta.msa_exam.product.domain.product.dto.request.GetProductsReq;
 import com.sparta.msa_exam.product.domain.product.dto.response.AddProductRes;
-import com.sparta.msa_exam.product.domain.product.dto.response.GetProductRes;
+import com.sparta.msa_exam.product.domain.product.dto.response.GetProductsRes;
 import com.sparta.msa_exam.product.domain.product.service.ProductService;
 import com.sparta.msa_exam.product.global.common.GlobalConstant;
 import io.swagger.v3.oas.annotations.Operation;
@@ -36,9 +36,9 @@ public class ProductController {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "요청 성공")
     })
-    public ResponseEntity<List<GetProductRes>> getProductList(GetProductsReq request) {
+    public ResponseEntity<List<GetProductsRes>> getProductList(GetProductsReq request) {
 
-        List<GetProductRes> productList = productService.getProductList(request);
+        List<GetProductsRes> productList = productService.getProductList(request);
 
         return ResponseEntity.ok()
                 .header(GlobalConstant.CUSTOM_SERVER_PORT_HEADER, port)

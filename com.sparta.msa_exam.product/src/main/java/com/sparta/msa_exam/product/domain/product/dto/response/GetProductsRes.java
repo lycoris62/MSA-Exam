@@ -7,7 +7,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
  * API 당 필수적으로 독립적인 DTO 포함하도록 하였습니다.
  */
 @Schema(title = "상품 조회 응답 DTO")
-public record GetProductRes(
+public record GetProductsRes(
 
         @Schema(description = "상품 아이디", example = "1")
         Long productId,
