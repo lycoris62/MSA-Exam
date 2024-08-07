@@ -7,6 +7,7 @@ import com.sparta.msa_exam.product.domain.product.dto.response.GetProductRes;
 import com.sparta.msa_exam.product.domain.product.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,14 +19,21 @@ import java.util.List;
 @RequestMapping("/products")
 public class ProductController {
 
+    private static final String CUSTOM_SERVER_PORT_HEADER = "Server-Port";
+    
     private final ProductService productService;
+
+    @Value("${server.port}")
+    private String port;
 
     @GetMapping
     public ResponseEntity<List<GetProductRes>> getProductList(GetProductReq request) {
 
         List<GetProductRes> productList = productService.getProductList(request);
 
-        return ResponseEntity.ok(productList);
+        return ResponseEntity.ok()
+                .header(CUSTOM_SERVER_PORT_HEADER, port)
+                .body(productList);
     }
 
     @PostMapping
@@ -33,6 +41,8 @@ public class ProductController {
 
         AddProductRes response = productService.addProduct(request);
 
-        return ResponseEntity.ok(response);
+        return ResponseEntity.ok()
+                .header(CUSTOM_SERVER_PORT_HEADER, port)
+                .body(response);
     }
 }
