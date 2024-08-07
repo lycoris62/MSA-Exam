@@ -31,6 +31,9 @@ public class ProductController {
     @Value("${server.port}")
     private String port;
 
+    /**
+     * 상품 목록 조회 API
+     */
     @GetMapping
     @Operation(summary = "상품 목록 조회")
     @ApiResponses(value = {
@@ -45,6 +48,9 @@ public class ProductController {
                 .body(productList);
     }
 
+    /**
+     * 상품 추가 API
+     */
     @PostMapping
     @Operation(summary = "상품 추가")
     @ApiResponses(value = {
