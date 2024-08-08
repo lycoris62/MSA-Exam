@@ -1,0 +1,36 @@
+spring:
+  application:
+    name: order-service
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:db_order
+    username: sa
+    password:
+  jpa:
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        show_sql: true # sql 로깅
+        #        generate_statistics: true # 쿼리수행 통계
+        format_sql: true # SQL 문 정렬하여 출력
+        highlight_sql: true # SQL 문 색 부여
+  h2:
+    console:
+      enabled: true
+
+server:
+  port: 19092
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:19090/eureka/
+
+management:
+  zipkin:
+    tracing:
+      endpoint: "http://localhost:9411/api/v2/spans"
+  tracing:
+    sampling:
+      probability: 1.0
