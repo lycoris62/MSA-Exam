@@ -1,0 +1,13 @@
+POST http://localhost:19092/orders
+Content-Type: application/json
+
+{
+  "name": "abc",
+  "productIds": [
+    1,
+    2,
+    3
+  ]
+}
+
+###
