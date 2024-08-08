@@ -11,3 +11,12 @@ Content-Type: application/json
 }
 
 ###
+
+POST http://localhost:19092/orders
+Content-Type: application/json
+
+{
+  "name": "abc"
+}
+
+###
