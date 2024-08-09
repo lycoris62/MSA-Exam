@@ -1,4 +1,4 @@
-POST http://localhost:19092/orders
+POST http://localhost:19092/order
 Content-Type: application/json
 
 {
@@ -12,7 +12,7 @@ Content-Type: application/json
 
 ###
 
-POST http://localhost:19092/orders
+POST http://localhost:19092/order
 Content-Type: application/json
 
 {
