@@ -1,6 +1,7 @@
 package com.sparta.msa_exam.order.domain.order.mapper;
 
 import com.sparta.msa_exam.order.domain.order.dto.response.CreateOrderRes;
+import com.sparta.msa_exam.order.domain.order.dto.response.GetOrderRes;
 import com.sparta.msa_exam.order.domain.order.entity.Order;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -15,4 +16,10 @@ public interface OrderMapper {
             expression = "java(order.getOrderItemList().stream().map(orderItem -> orderItem.getProductId()).toList())"
     )
     CreateOrderRes toCreateOrderRes(Order order);
+
+    @Mapping(
+            target = "productIds",
+            expression = "java(order.getOrderItemList().stream().map(orderItem -> orderItem.getProductId()).toList())"
+    )
+    GetOrderRes toGetOrderReq(Order order);
 }
