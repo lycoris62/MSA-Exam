@@ -4,6 +4,7 @@ import com.sparta.msa_exam.order.domain.order.dto.request.AddOrderItemReq;
 import com.sparta.msa_exam.order.domain.order.dto.request.CreateOrderReq;
 import com.sparta.msa_exam.order.domain.order.dto.response.AddOrderItemRes;
 import com.sparta.msa_exam.order.domain.order.dto.response.CreateOrderRes;
+import com.sparta.msa_exam.order.domain.order.dto.response.GetOrderRes;
 import com.sparta.msa_exam.order.domain.order.service.OrderService;
 import com.sparta.msa_exam.order.global.common.GlobalConstant;
 import jakarta.validation.Valid;
@@ -23,6 +24,16 @@ public class OrderController {
 
     @Value("${server.port}")
     private String port;
+
+    @GetMapping("/{orderId}")
+    public ResponseEntity<GetOrderRes> getOrder(@PathVariable Long orderId) {
+
+        GetOrderRes response = orderService.getOrder(orderId);
+
+        return ResponseEntity.ok()
+                .header(GlobalConstant.CUSTOM_SERVER_PORT_HEADER, port)
+                .body(response);
+    }
 
     @PostMapping
     public ResponseEntity<CreateOrderRes> createOrder(@RequestBody @Valid CreateOrderReq request) {
