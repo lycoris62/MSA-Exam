@@ -46,7 +46,10 @@ public class OrderController {
     }
 
     @PutMapping("/{orderId}")
-    public ResponseEntity<AddOrderItemRes> addOrderItem(@PathVariable Long orderId, @RequestBody @Valid AddOrderItemReq request) {
+    public ResponseEntity<AddOrderItemRes> addOrderItem(
+            @PathVariable Long orderId,
+            @RequestBody @Valid AddOrderItemReq request
+    ) {
 
         AddOrderItemRes response = orderService.addOrderItem(orderId, request);
 
