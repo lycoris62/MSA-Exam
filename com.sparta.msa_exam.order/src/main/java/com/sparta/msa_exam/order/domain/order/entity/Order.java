@@ -1,6 +1,7 @@
 package com.sparta.msa_exam.order.domain.order.entity;
 
 import com.sparta.msa_exam.order.domain.model.BaseEntity;
+import com.sparta.msa_exam.order.domain.order.dto.request.AddOrderItemReq;
 import com.sparta.msa_exam.order.domain.order.dto.request.CreateOrderItemReq;
 import com.sparta.msa_exam.order.domain.order.dto.request.CreateOrderReq;
 import jakarta.persistence.*;
@@ -46,5 +47,11 @@ public class Order extends BaseEntity {
                 .toList();
 
         return order;
+    }
+
+    public void addOrderItem(AddOrderItemReq request) {
+
+        CreateOrderItemReq createOrderItemReq = new CreateOrderItemReq(this, request.productId());
+        this.orderItemList.add(OrderItem.from(createOrderItemReq));
     }
 }
