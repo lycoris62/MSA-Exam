@@ -4,6 +4,7 @@ import com.sparta.msa_exam.order.domain.order.dto.request.AddOrderItemReq;
 import com.sparta.msa_exam.order.domain.order.dto.request.CreateOrderReq;
 import com.sparta.msa_exam.order.domain.order.dto.response.AddOrderItemRes;
 import com.sparta.msa_exam.order.domain.order.dto.response.CreateOrderRes;
+import com.sparta.msa_exam.order.domain.order.dto.response.GetOrderRes;
 import com.sparta.msa_exam.order.domain.order.entity.Order;
 import com.sparta.msa_exam.order.domain.order.mapper.OrderMapper;
 import com.sparta.msa_exam.order.domain.order.repository.OrderRepository;
@@ -21,6 +22,15 @@ public class OrderService {
 
     private final OrderMapper orderMapper;
     private final OrderRepository orderRepository;
+
+    @Transactional(readOnly = true)
+    public GetOrderRes getOrder(Long orderId) {
+
+        Order order = orderRepository.findById(orderId)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+
+        return orderMapper.toGetOrderReq(order);
+    }
 
     @Transactional
     public CreateOrderRes createOrder(CreateOrderReq request) {
