@@ -3,7 +3,7 @@ spring:
     name: product-service
   datasource:
     driver-class-name: org.h2.Driver
-    url: jdbc:h2:mem:db
+    url: jdbc:h2:mem:db_product
     username: sa
     password:
   jpa:
@@ -15,6 +15,9 @@ spring:
         #        generate_statistics: true # 쿼리수행 통계
         format_sql: true # SQL 문 정렬하여 출력
         highlight_sql: true # SQL 문 색 부여
+  h2:
+    console:
+      enabled: true
 
 server:
   port: 19093
