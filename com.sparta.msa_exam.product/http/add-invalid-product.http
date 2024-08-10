@@ -3,7 +3,7 @@ Content-Type: application/json
 
 {
   "name": "",
-  "supplyPrice": 3000
+  "supply_price": 3000
 }
 
 ###
@@ -23,7 +23,7 @@ Content-Type: application/json
 
 {
   "name": "ccc",
-  "supplyPrice": -100
+  "supply_price": -100
 }
 
 ###
