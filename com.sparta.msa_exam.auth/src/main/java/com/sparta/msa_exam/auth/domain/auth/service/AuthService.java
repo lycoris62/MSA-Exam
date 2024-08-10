@@ -3,7 +3,9 @@ package com.sparta.msa_exam.auth.domain.auth.service;
 import com.sparta.msa_exam.auth.domain.auth.dto.request.SignInReq;
 import com.sparta.msa_exam.auth.domain.auth.dto.request.SignUpReq;
 import com.sparta.msa_exam.auth.domain.auth.dto.response.SignInRes;
+import com.sparta.msa_exam.auth.domain.auth.dto.response.SignUpRes;
 import com.sparta.msa_exam.auth.domain.auth.entity.User;
+import com.sparta.msa_exam.auth.domain.auth.mapper.AuthMapper;
 import com.sparta.msa_exam.auth.domain.auth.repository.UserRepository;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
@@ -14,6 +16,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.crypto.SecretKey;
@@ -23,6 +26,7 @@ import java.util.Date;
 @Service
 public class AuthService {
 
+    private final AuthMapper authMapper;
     private final SecretKey secretKey;
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
@@ -36,11 +40,13 @@ public class AuthService {
     public AuthService(
             @Value("${service.jwt.secret-key}") String secretKey,
             UserRepository userRepository,
-            PasswordEncoder passwordEncoder
+            PasswordEncoder passwordEncoder,
+            AuthMapper authMapper
     ) {
         this.secretKey = Keys.hmacShaKeyFor(Decoders.BASE64URL.decode(secretKey));
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
+        this.authMapper = authMapper;
     }
 
     /**
@@ -68,8 +74,32 @@ public class AuthService {
     }
 
     /**
+     * 회원가입
+     */
+    @Transactional
+    public SignUpRes signUp(SignUpReq request) {
+
+        validateUserId(request);
+
+        User user = User.from(request);
+        user.setEncodedPassword(passwordEncoder.encode(request.password()));
+
+        User savedUser = userRepository.save(user);
+
+        return authMapper.toSignUpRes(savedUser);
+    }
+
+    private void validateUserId(SignUpReq request) {
+        boolean existsById = userRepository.existsById(request.userId());
+        if (existsById) {
+            throw new ResponseStatusException(HttpStatus.CONFLICT);
+        }
+    }
+
+    /**
      * 사용자 인증
      */
+    @Transactional
     public SignInRes signIn(SignInReq request) {
 
         User user = userRepository.findById(request.user_id())
