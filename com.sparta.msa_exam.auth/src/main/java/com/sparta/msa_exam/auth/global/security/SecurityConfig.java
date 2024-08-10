@@ -33,6 +33,7 @@ public class SecurityConfig {
         http.authorizeHttpRequests(authz -> authz
                 .requestMatchers(PathRequest.toH2Console()).permitAll()
                 .requestMatchers("/auth/signIn").permitAll()
+                .requestMatchers("/auth/signUp").permitAll()
                 .anyRequest().authenticated()
         );
 
