@@ -1,0 +1,5 @@
+GET http://localhost:19091/products
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJ1c2VyX2lkIjoidGVzdElkIiwicm9sZSI6IlJPTEVfVVNFUiIsImlzcyI6ImF1dGgtc2VydmljZSIsImlhdCI6MTcyMzI2NjU3NSwiZXhwIjoxNzIzMjcwMTc1fQ.0EFJ-ywv-v7YWl0Vri0ZTiqcenSw9xb4UgghDC-G5Bq3JRbMKj_NEBabh1F53qwQNKLFDcLaedssv5tU6hMR8g
+
+###
