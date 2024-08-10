@@ -18,6 +18,6 @@ public record AddProductReq(
         @PositiveOrZero(message = "공급가는 음수가 될 수 없습니다.")
         @Max(value = Integer.MAX_VALUE, message = "최대 공급가를 초과하였습니다.")
         @Schema(description = "공급가", example = "1000")
-        Integer supplyPrice
+        Integer supply_price
 ) {
 }

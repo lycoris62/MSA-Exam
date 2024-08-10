@@ -32,7 +32,7 @@ public class Product extends BaseEntity {
         Product product = new Product();
 
         product.name = request.name();
-        product.supplyPrice = request.supplyPrice();
+        product.supplyPrice = request.supply_price();
 
         return product;
     }
