@@ -38,13 +38,7 @@ public class Order extends BaseEntity {
     public static Order from(CreateOrderReq request) {
 
         Order order = new Order();
-
         order.name = request.name();
-        order.orderItemList = request.productIds()
-                .stream()
-                .map(productId -> new CreateOrderItemReq(order, productId))
-                .map(OrderItem::from)
-                .toList();
 
         return order;
     }
